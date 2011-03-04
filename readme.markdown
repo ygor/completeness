@@ -12,7 +12,7 @@ First include the library in your class:
 
 If you want your model to only be regarded as complete if it has a title and a description, you can do the following:
 
-    define_completeness
+    define_completeness do
         check :title
         check :description
     end
@@ -20,25 +20,25 @@ If you want your model to only be regarded as complete if it has a title and a d
 By default an attribute is regarded to be complete if it is present. If you would like to use a different condition, use the 
 :with parameter. 
 
-    define_completeness
+    define_completeness do
         check :title, :with => lambda {|attribute_value| attribute_value != 'test'}
     end
 
 You can also use :if, and :unless conditions. For example:
 
-    define completeness
+    define completeness do
         check :title
         check :description, :unless => {|r| r.scribble? }
     end
 
 You can also specify multiple named completeness groups
 
-    define_completeness :profile
+    define_completeness :profile do
         check :first_name
         check :last_name
     end
 
-    define_completeness :account
+    define_completeness :account do
         check :email,
         check :password
     end
